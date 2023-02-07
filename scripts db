@@ -1,0 +1,14 @@
+-- select para tarjetas en general
+select p.name, p.description, p.image, p.offers_id_offers, cp.price, cp.products_id_products, p.delete, cp.color from products_combination as cp inner join 
+products as p on products_id_products = id_products where  (p.status = 1 and p.delete = 0)  and (cp.size = 'ch' or cp.size = 'NA');
+
+
+-- filtar combinados en codigo igual que el de las tarjetas normales
+-- select para productos con oferta
+select p.name, p.description, p.image, p.offers_id_offers, cp.price, cp.products_id_products, p.delete, cp.color, p.offers_id_offers from products_combination as cp inner join 
+products as p on products_id_products = id_products where  (p.status = 1 and p.delete = 0)  and (cp.size = 'ch' or cp.size = 'NA') and  offers_id_offers = 1; 
+
+
+-- select para buscador de productos
+select p.name, p.description, p.image, p.offers_id_offers, cp.price, cp.products_id_products, p.delete, cp.color, c.name from products_combination as cp inner join 
+products as p on products_id_products = id_products inner join categories as c on category_id_category=id_category where  (p.status = 1 and p.delete = 0)  and (cp.size = 'ch' or cp.size = 'NA') and p.name like '%?%' or cp.color like '%?%' or c.name like '%?%';
